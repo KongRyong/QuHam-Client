@@ -1,114 +1,74 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, {Component} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import colors from './res/values/colors';
+import strings from './res/values/strings';
+import dimen from './res/values/dimen';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+export default class App extends Component<Props> {
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{strings.startGreeting}</Text>
+          <Image
+            style={styles.image}
+            source={{
+              uri: 'https://facebook.github.io/react-native/img/tiny_logo.png',
+            }}
+          />
+        </View>
+        <View style={styles.boxContainer}>
+          <TouchableOpacity style={styles.box}>
+            <Text style={styles.text}>{strings.startWithKakao}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.box}>
+            <Text style={styles.text}>{strings.startWithNaver}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.box}>
+            <Text style={styles.text}>{strings.startWithFacebook}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  titleContainer: {
+    flex: 2,
   },
-  body: {
-    backgroundColor: Colors.white,
+  boxContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  title: {
+    fontSize: dimen.largeFontSize,
+    fontWeight: 'bold',
+    color: colors.blue,
+    marginTop: dimen.startTitle.marginTop,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
+  image: {
+    height: dimen.startAppImage.height,
+    width: dimen.startAppImage.width,
+    marginTop: dimen.startAppImage.marginTop,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
+  box: {
+    height: dimen.startWithAccountBox.height,
+    width: dimen.startWithAccountBox.width,
+    borderWidth: dimen.borderWidth,
+    borderRadius: dimen.borderRadius,
+    borderColor: colors.greyBorder,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: dimen.startWithAccountBox.marginBottom,
   },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  text: {
+    fontSize: dimen.regularFontSize,
+    color: colors.greyText,
   },
 });
-
-export default App;
